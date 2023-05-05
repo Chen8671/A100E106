@@ -1,4 +1,4 @@
-Create table memer(
+Create table vip(
 `會員編號` int ,
-`姓名`   char ,
+`姓名`   varchar(75) not null ,
 `會員密碼` int );
