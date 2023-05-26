@@ -10,3 +10,4 @@ Create table memer(
 `姓名`   char
 `會員密碼` int );
 小明
+遊戲人生情報文章
