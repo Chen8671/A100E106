@@ -23,3 +23,22 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>早餐試算</title>
+</head>
+<body>
+    <h1>早餐試算器</h1>
+
+    <form method="post" action="calculate.php">
+        <label for="quantity">數量：</label>
+        <input type="number" name="quantity" id="quantity" required>
+
+        <label for="price">價格：</label>
+        <input type="number" name="price" id="price" step="0.01" required>
+
+        <input type="submit" value="計算">
+    </form>
+</body>
+</html>
