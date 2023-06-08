@@ -11,3 +11,4 @@ Create table memer(
 `會員密碼` int );
 小明
 遊戲人生情報文章
+早餐費用試算
