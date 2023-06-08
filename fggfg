@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $total = calculateTotalCost($drink, $quantity, $pearl);
 
         // 重新導向回原始頁面，並帶上總金額和訂購者姓名作為參數
-        $url = 'index.php?total=' . $total . '&name=' . urlencode($name);
+        $url = 'orderview?total=' . $total . '&name=' . urlencode($name);
         header('Location: ' . $url);
         exit();
     }
