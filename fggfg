@@ -8,32 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $quantity = $_POST['quantity'];
         $pearl = isset($_POST['pearl']) ? $_POST['pearl'] : '';
 
-        // 執行驗證控制項
-        $error = validateOrder($drink, $pearl);
-
-        if ($error) {
-            // 如果有錯誤，重新導向回原始頁面並帶上錯誤訊息作為參數
-            $url = 'orderview?error=' . urlencode($error);
-            header('Location: ' . $url);
-            exit();
-        }
-
         // 執行計算費用的邏輯
         $total = calculateTotalCost($drink, $quantity, $pearl);
 
         // 重新導向回原始頁面，並帶上總金額和訂購者姓名作為參數
-        $url = 'orderview?total=' . $total . '&name=' . urlencode($name);
+        $url = 'index.php?total=' . $total . '&name=' . urlencode($name);
         header('Location: ' . $url);
         exit();
     }
-}
-
-// 驗證控制項的函式
-function validateOrder($drink, $pearl) {
-    if ($drink === 'soy-milk' && $pearl === 'pearl') {
-        return '豆漿不能加珍珠';
-    }
-    return null;
 }
 
 // 計算總金額的函式
