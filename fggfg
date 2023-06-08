@@ -1,3 +1,5 @@
+
+      
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 檢查是否按下計算費用的按鈕
@@ -8,6 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $quantity = $_POST['quantity'];
         $pearl = isset($_POST['pearl']) ? $_POST['pearl'] : '';
 
+        // 執行驗證控制項
+        $errors = validateOrder($drink, $pearl, $quantity);
+
+        if (!empty($errors)) {
+            // 如果有錯誤，重新導向回原始頁面並帶上錯誤訊息作為參數
+            $errorString = implode(', ', $errors);
+            $url = 'index.php?error=' . urlencode($errorString);
+            header('Location: ' . $url);
+            exit();
+        }
+
         // 執行計算費用的邏輯
         $total = calculateTotalCost($drink, $quantity, $pearl);
 
@@ -16,6 +29,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ' . $url);
         exit();
     }
+}
+
+// 驗證控制項的函式
+function validateOrder($drink, $pearl, $quantity) {
+    $errors = [];
+
+    if ($drink === 'soy-milk' && $pearl === 'pearl') {
+        $errors[] = '豆漿不能加珍珠';
+    }
+
+    if ($quantity < 1 || $quantity > 20) {
+        $errors[] = '數量必須在1到20之間';
+    }
+
+    return $errors;
 }
 
 // 計算總金額的函式
