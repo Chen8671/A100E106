@@ -21,3 +21,6 @@ CREATE TABLE orders (
         total DECIMAL(10,2) NOT NULL,
         order_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )"
+
+INSERT INTO orders (name, drink, quantity, total) VALUES ('John Doe', '豆漿', 2, 40.00);
+
