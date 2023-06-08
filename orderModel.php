@@ -12,3 +12,12 @@ else {
     echo "不正確連接資料庫</br>" . mysqli_connect_error();
 }
 ?>
+
+CREATE TABLE orders (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        drink VARCHAR(255) NOT NULL,
+        quantity INT(11) NOT NULL,
+        total DECIMAL(10,2) NOT NULL,
+        order_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )"
