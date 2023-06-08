@@ -1,0 +1,11 @@
+<?php
+// 處理計算費用的邏輯
+if(isset($_POST['calculate_cost'])) {
+    // 假設你有一個名為 calculateTotalCost 的函式來計算總金額
+    $totalCost = calculateTotalCost();
+    echo "總金額: " . $totalCost . " 元";
+}
+
+// 其他程式碼和函式定義...
+
+?>
