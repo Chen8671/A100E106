@@ -1,0 +1,49 @@
+<?php
+
+class OrderModel {
+    private $db;
+
+    public function __construct() {
+        // 初始化資料庫連線
+        $host = '資料庫主機名稱';
+        $username = '資料庫使用者名稱';
+        $password = '資料庫密碼';
+        $dbname = '資料庫名稱';
+        
+        try {
+            $this->db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die('資料庫連線錯誤: ' . $e->getMessage());
+        }
+    }
+
+    public function saveOrder($name, $drink, $quantity, $total) {
+        try {
+            // 執行插入訂單資訊的 SQL 語句
+            $stmt = $this->db->prepare("INSERT INTO orders (name, drink, quantity, total) VALUES (:name, :drink, :quantity, :total)");
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':drink', $drink);
+            $stmt->bindParam(':quantity', $quantity);
+            $stmt->bindParam(':total', $total);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die('資料庫錯誤: ' . $e->getMessage());
+        }
+    }
+}
+
+?>
+請確保在 orderModel.php 中替換以下資訊：
+
+'資料庫主機名稱'：您的資料庫主機名稱（例如：localhost）
+'資料庫使用者名稱'：您的資料庫使用者名稱
+'資料庫密碼'：您的資料庫密碼
+'資料庫名稱'：您的資料庫名稱
+此範例使用 PDO（PHP 資料物件）來建立資料庫連線並執行資料庫查詢。 saveOrder() 方法用於將訂單資訊插入到 orders 資料表中。您可以根據需要自訂資料庫架構和操作方法。請確保在使用之前根據您的資料庫配置進行修改。
+
+
+
+
+
+
