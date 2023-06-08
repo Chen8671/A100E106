@@ -36,4 +36,17 @@
       <button type="submit" name="calculate">計算費用</button>
     </div>
   </form>
-  </html>
+  <?php
+    if (isset($_GET['error'])) {
+      $error = $_GET['error'];
+      echo '<p class="error-message">錯誤！' . $error . '</p>';
+    }
+    if (isset($_GET['total'])) {
+      $total = $_GET['total'];
+      $name = $_GET['name'];
+      echo '<p>訂購者姓名：' . $name . '</p>';
+      echo '<p>總金額：$' . $total . '</p>';
+    }
+  ?>
+</body>
+</html>
