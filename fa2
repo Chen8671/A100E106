@@ -52,5 +52,11 @@ CREATE TABLE orders (
 INSERT INTO orders (name, drink, quantity, total) VALUES ('John Doe', '豆漿', 2, 40.00);
 
 
+SELECT
+    SUM(CASE WHEN drink = '豆漿' THEN quantity ELSE 0 END) AS soy_milk_total,
+    SUM(CASE WHEN drink = '奶茶' AND pearl = 0 THEN quantity ELSE 0 END) AS milk_tea_no_pearl_total,
+    SUM(CASE WHEN drink = '奶茶' AND pearl = 1 THEN quantity ELSE 0 END) AS milk_tea_with_pearl_total
+FROM
+    orders;
 
 
